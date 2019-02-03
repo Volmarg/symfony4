@@ -1,0 +1,7 @@
+user_dashboard:
+    path: /user/dashboard
+    controller: App\Controller\UserDashboardController::index
+
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::login
