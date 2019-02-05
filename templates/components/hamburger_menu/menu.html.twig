@@ -9,7 +9,9 @@
                 {% include 'components/hamburger_menu/one_link.html.twig' %}
             {% endif %}
         {% else %}
-            {% include 'components/hamburger_menu/one_link.html.twig' %}
+            {% if is_granted( element['role'] ) %}
+                {% include 'components/hamburger_menu/one_link.html.twig' %}
+            {% endif %}
         {% endif %}
     {% endfor %}
 

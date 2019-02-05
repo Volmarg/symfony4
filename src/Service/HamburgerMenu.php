@@ -32,8 +32,8 @@ class HamburgerMenu extends AbstractController {
             [
                 'role' => 'IS_AUTHENTICATED_FULLY',
                 'negate' => true,
-                'type' => 'route',
-                'url' => 'app_login',
+                'type' => 'href',
+                'url' => '/register',
                 'name' => 'Register'
             ],
             [
