@@ -1,0 +1,5 @@
+{% if  is_granted( element['role'] ) %}
+    <li>
+        <a href="{% if element['type']=='route' %}{{ url(element['url']) }} {% else %}{{ element['url'] }}{% endif %}">{{ element['name'] }}</a>
+    </li>
+{% endif %}

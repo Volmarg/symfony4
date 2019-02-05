@@ -2,6 +2,10 @@ user_dashboard:
     path: /user/dashboard
     controller: App\Controller\UserDashboardController::index
 
+admin_dashboard:
+    path: /admin/dashboard
+    controller: App\Controller\AdminDashboardController::index
+
 app_logout:
     path: /logout
     controller: App\Controller\SecurityController::login
