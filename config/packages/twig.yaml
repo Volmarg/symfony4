@@ -4,3 +4,4 @@ twig:
   strict_variables: '%kernel.debug%'
   globals:
     menu_elements: '@App\Service\HamburgerMenu'
+    user_config: '@App\Service\UserConfig'

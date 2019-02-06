@@ -2,6 +2,11 @@
 
 {% block title %}Hello UserDashboardController!{% endblock %}
 
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/avatar.css') }}">
+    {% endblock %}
+
 {% block body %}
     {{ parent() }}
     <style>
@@ -18,17 +23,14 @@
         }
     </style>
 
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
+    {% include 'components/avatar/avatar.html.twig' %}
 
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a
-                            href="{{ '/var/www/html/symfony4/src/Controller/UserDashboardController.php'|file_link(0) }}">src/Controller/UserDashboardController.php</a></code>
-            </li>
-            <li>Your template at <code><a
-                            href="{{ '/var/www/html/symfony4/templates/user_dashboard/index.html.twig'|file_link(0) }}">templates/user_dashboard/index.html.twig</a></code>
-            </li>
-        </ul>
+    <div class="example-wrapper">
+
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/avatar.js') }}"></script>
 {% endblock %}
