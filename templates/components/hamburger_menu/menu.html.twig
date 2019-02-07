@@ -2,7 +2,7 @@
     <span class="cls"></span>
     <span>
 		<ul class="sub-menu ">
-
+ {% include 'components/hamburger_menu/static_links.html.twig' %}
     {% for element in menu_elements.getElements() %}
         {% if element['negate'] %}
             {% if not is_granted( element['role'] ) %}

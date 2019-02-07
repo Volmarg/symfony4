@@ -6,6 +6,10 @@ admin_dashboard:
     path: /admin/dashboard
     controller: App\Controller\AdminDashboardController::index
 
+user_profile_settings:
+    path: /user/profile/settings
+    controller: App\Controller\UserProfileSettingsController:index
+
 app_logout:
     path: /logout
     controller: App\Controller\SecurityController::login

@@ -7,7 +7,7 @@ use App\Entity\UserSettings;
 
 class UserConfig extends AbstractController {
 
-    private $default_avatar = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__340.png';
+    const DEFAULT_AVATAR = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__340.png';
 
     public function getAvatar() {
 
@@ -28,6 +28,5 @@ class UserConfig extends AbstractController {
 
         return $this->default_avatar;
     }
-
 
 }
