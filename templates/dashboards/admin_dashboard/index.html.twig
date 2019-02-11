@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserDashboardController!{% endblock %}
+{% block title %}Hello AdminDashboardController!{% endblock %}
 
     {% block stylesheets %}
         {{ parent() }}
@@ -26,7 +26,7 @@
     {% include 'components/avatar/avatar.html.twig' %}
 
     <div class="example-wrapper">
-
+        {% include 'components/admin/dashlets/users.html.twig' with {all_users:all_users} %}
     </div>
 {% endblock %}
 

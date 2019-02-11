@@ -14,19 +14,18 @@ class UserConfig extends AbstractController {
         $user = $this->getUser();
         $entity_manager = $this->getDoctrine()->getManager();
         $query_builder = $entity_manager->createQueryBuilder();
-
-        $user_config = $query_builder->select(array('us'))
+        $query_result = $query_builder->select(array('us'))
             ->from('App:UserSettings', 'us')
             ->where('us.user_id_id = ' . $user->getId())
             ->getQuery()
-            ->getResult()[0];
-        $avatar = $user_config->getAvatar();
+            ->getResult();
 
-        if (isset($avatar) && !empty($avatar)) {
-            return $avatar;
+        if (!empty($query_result)) {
+            $avatar = $query_result[0]->getAvatar();
+            return (!empty($avatar) ? $avatar : self::DEFAULT_AVATAR);
         }
 
-        return $this->default_avatar;
+        return self::DEFAULT_AVATAR;
     }
 
 }

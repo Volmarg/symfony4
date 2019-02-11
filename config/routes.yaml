@@ -1,15 +1,31 @@
-user_dashboard:
-    path: /user/dashboard
-    controller: App\Controller\UserDashboardController::index
-
+#Dashboards
+#Admin
 admin_dashboard:
-    path: /admin/dashboard
-    controller: App\Controller\AdminDashboardController::index
+  path: /admin/dashboard
+  controller: App\Controller\Dashboards\AdminDashboardController::index
+
+admin_dashboard_user_removal:
+  path: /admin/dashboard/remove/{user_uuid}
+  controller: App\Controller\Dashboards\AdminDashboardController::usersDashlet_removeUser
+
+admin_dashboard_user_role:
+  path: /admin/dashboard/role/{user_id}
+  controller: App\Controller\Dashboards\AdminDashboardController::usersDashlet_changeRole
+
+#User
+user_dashboard:
+  path: /user/dashboard
+  controller: App\Controller\Dashboards\UserDashboardController::index
 
 user_profile_settings:
-    path: /user/profile/settings
-    controller: App\Controller\UserProfileSettingsController:index
+  path: /user/profile/settings
+  controller: App\Controller\Dashboards\Components\User\UserProfileSettingsController:index
+
+#Routes
+home:
+  path: /
+  controller: App\Controller\Routes\HomePageController::index
 
 app_logout:
-    path: /logout
-    controller: App\Controller\SecurityController::login
+  path: /logout
+  controller: App\Controller\SecurityController::login

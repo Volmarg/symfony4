@@ -7,8 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserSettingsRepository")
  */
-class UserSettings
-{
+class UserSettings {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -32,30 +31,25 @@ class UserSettings
      */
     private $avatar;
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getUserId(): ?User
-    {
+    public function getUserId(): ?User {
         return $this->user_id;
     }
 
-    public function setUserId(User $user_id): self
-    {
+    public function setUserId(User $user_id): self {
         $this->user_id = $user_id;
 
         return $this;
     }
 
-    public function getAvatar(): ?string
-    {
+    public function getAvatar(): ?string {
         return $this->avatar;
     }
 
-    public function setAvatar(?string $avatar): self
-    {
+    public function setAvatar(?string $avatar): self {
         $this->avatar = $avatar;
 
         return $this;

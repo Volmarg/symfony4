@@ -3,17 +3,17 @@
     <span>
 		<ul class="sub-menu ">
  {% include 'components/hamburger_menu/static_links.html.twig' %}
-    {% for element in menu_elements.getElements() %}
-        {% if element['negate'] %}
-            {% if not is_granted( element['role'] ) %}
-                {% include 'components/hamburger_menu/one_link.html.twig' %}
-            {% endif %}
-        {% else %}
-            {% if is_granted( element['role'] ) %}
-                {% include 'components/hamburger_menu/one_link.html.twig' %}
-            {% endif %}
-        {% endif %}
-    {% endfor %}
+            {% for element in menu_elements.getElements() %}
+                {% if element['negate'] %}
+                    {% if not is_granted( element['role'] ) %}
+                        {% include 'components/hamburger_menu/one_link.html.twig' %}
+                    {% endif %}
+                {% else %}
+                    {% if is_granted( element['role'] ) %}
+                        {% include 'components/hamburger_menu/one_link.html.twig' %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
 
 		</ul>
 	</span>

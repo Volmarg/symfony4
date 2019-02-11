@@ -5,3 +5,4 @@ twig:
   globals:
     menu_elements: '@App\Service\HamburgerMenu'
     user_config: '@App\Service\UserConfig'
+    roles_list: ['ROLE_USER','ROLE_ADMIN']

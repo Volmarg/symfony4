@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Dashboards\Components\User;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -31,28 +31,27 @@ class UserProfileSettingsController extends AbstractController {
             $forms_views[$form_key] = $form_value->createView();
 
             if ($request->get('form')['form-type'] != $form_key) continue;
-            $this->processFormRequest($request, $form_value, $form_key);
+            $this->processFormRequest($request, $form_value, $form_key, $encoder);
         }
 
-        return $this->render('user_profile_settings/index.html.twig', $forms_views);
+        return $this->render('dashboards/user_profile_settings/index.html.twig', $forms_views);
     }
-
 
     protected function buildForms() {
 
         $user_settings = new UserSettings();
         $avatar_form = $this->createFormBuilder($user_settings)
-        ->add('avatar', TextType::class, [
-            'label' => 'Avatar image url',
-            'constraints' => [
-                new Url([
-                    'message' => 'This is not valid link!'
-                ])
-            ],
-            'attr' => [
-                'class' => 'form-controll',
-            ]
-        ])
+            ->add('avatar', TextType::class, [
+                'label' => 'Avatar image url',
+                'constraints' => [
+                    new Url([
+                        'message' => 'This is not valid link!'
+                    ])
+                ],
+                'attr' => [
+                    'class' => 'form-controll',
+                ]
+            ])
             ->add('form-type', HiddenType::class, [
                 'label' => '',
                 'mapped' => false,
@@ -106,7 +105,7 @@ class UserProfileSettingsController extends AbstractController {
         return compact('avatar_form', 'login_data_form');
     }
 
-    protected function processFormRequest($request, $form_value, $form_key) {
+    protected function processFormRequest($request, $form_value, $form_key, $encoder) {
         $form_value->handleRequest($request);
 
         if ($form_value->isSubmitted() && $form_value->isValid()) {
@@ -123,15 +122,17 @@ class UserProfileSettingsController extends AbstractController {
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
-        $user_config = $qb->select(array('us'))
+        $query_result = $qb->select(array('us'))
             ->from('App:UserSettings', 'us')
             ->where('us.user_id_id = ' . $user->getId())
             ->getQuery()
-            ->getResult()[0];
+            ->getResult();
 
+        $user_config = $query_result[0];
         $user_config->setAvatar($avatar);
         $em->persist($user_config);
         $em->flush();
+        return;
     }
 
     protected function updateUserLoginCredentials($form, $encoder) {
@@ -145,4 +146,5 @@ class UserProfileSettingsController extends AbstractController {
         $em->persist($user_entity);
         $em->flush();
     }
+
 }

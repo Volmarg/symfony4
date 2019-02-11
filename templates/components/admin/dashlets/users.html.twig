@@ -1,0 +1,41 @@
+{% extends 'components/dashlet/dashlet.html.twig' %}
+
+{% block name %}
+    Users
+{% endblock %}
+
+{% block details %}
+    <table>
+        <thead></thead>
+        <tbody>
+        {% for user in all_users %}
+            {% if user.uuid!=app.user.uuid %}
+                <tr>
+                    <td>{{ user.uuid }}</td>
+                    <td>
+                        <select>
+                            {% for role in roles_list %}
+                                <option value="{{ role }}"
+                                        {% if role==user.roles[0] %}selected{% endif %}>{{ role }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td class="remove">
+                        <a href="{{ url('admin_dashboard_user_removal',{'user_uuid':user.id}) }}" class="select-user-remove">
+                            <i class="icon-trash"></i></a>
+                    </td>
+                    <td class="accept">
+                        <a href="{{ url('admin_dashboard_user_role',{'user_id':user.id}) }}?role={{ user.roles[0] }}" class="select-user-role">
+                            <i class="icon-check"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('js/components/admin/dashlets/user.js') }}"></script>
+{% endblock %}

@@ -25,7 +25,7 @@ class SecurityController extends AbstractController {
             }
             return $this->redirect('/');
         } else {
-            return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+            return $this->render('routes/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
         }
     }
 
