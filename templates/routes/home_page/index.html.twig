@@ -19,6 +19,8 @@
     </style>
 
     <div class="example-wrapper">
-
+        {% for post in all_posts %}
+            {% include 'components/post/post.html.twig' with {'post':post} %}
+        {% endfor %}
     </div>
 {% endblock %}

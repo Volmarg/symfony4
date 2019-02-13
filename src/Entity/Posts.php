@@ -82,7 +82,7 @@ class Posts
         return $this;
     }
 
-    public function getCreateDate(): ?string
+    public function getCreate_Date(): ?string
     {
         return $this->create_date;
     }

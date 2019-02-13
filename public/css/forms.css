@@ -8,16 +8,16 @@ div[class^="form-"] > div + div {
     margin-top: 20px;
 }
 
-.configs-wrapper {
+.configs-wrapper, .post-form-wrapper {
     width: 400px;
     top: 20%;
     position: relative;
 }
 
-.configs-wrapper form {
+.configs-wrapper form, .post-form-wrapper form {
     padding: 10px;
 }
 
-.configs-wrapper form input, .configs-wrapper form label {
+.configs-wrapper form input, .configs-wrapper form label, .post-form-wrapper form input, .post-form-wrapper form textarea, .post-form-wrapper form label {
     min-width: 150px;
 }
