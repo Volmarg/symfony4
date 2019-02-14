@@ -1,8 +1,13 @@
 <section class="post-wrapper">
     <section class="info-bar">
         <ul>
-            <li>{{ post.author }}</li>
-            <li>{{ post.create_date }}</li>
+            <li>
+                <div class="circle small-circle">
+                    <img height="80" width="80" src="{{ post.avatar }}">
+                </div>
+            </li>
+            <li><b>Author: </b> {{ post.author }}</li>
+            <li><b>Posted: </b>{{ post.create_date }}</li>
         </ul>
     </section>
 

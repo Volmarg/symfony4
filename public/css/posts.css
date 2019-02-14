@@ -1,0 +1,23 @@
+.post-wrapper {
+
+}
+
+.post-wrapper h1 {
+    margin: 2px;
+    padding: 3px;
+
+    font-size: 35px;
+}
+
+.post-wrapper .info-bar ul {
+    list-style-type: none;
+}
+
+.post-wrapper .info-bar ul li {
+    display: inline-block;
+}
+
+.post-wrapper .small-avatar{
+    width:50px;
+    height:50px;
+}

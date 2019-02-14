@@ -14,7 +14,16 @@
     top: 40px;
     left: 40px;
     cursor: pointer;
-    z-index:3;
+    z-index: 3;
+}
+
+.small-circle, .small-circle img {
+    height: 40px;
+    width: 40px;
+
+    top: 0px;
+    left: 0px;
+    position: relative;
 }
 
 .circle img {

@@ -15,8 +15,10 @@ $(document).ready(() => {
 
         $.get(controller_action, (result) => {
         }).done((result) => {
-            $.notify(result.message);
+            $.notify(result.message, {globalPosition: 'top center', className: 'info'});
             if ($(link).hasClass('select-user-remove')) window.location.reload();
+        }).fail(() => {
+            $.notify('There was an error handling this Request', {globalPosition: 'top center', className: 'error'});
         });
 
     });

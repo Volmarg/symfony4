@@ -2,6 +2,11 @@
 
 {% block title %}Hello HomePageController!{% endblock %}
 
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/posts.css') }}">
+    {% endblock %}
+
 {% block body %}
     {{ parent() }}
     <style>
