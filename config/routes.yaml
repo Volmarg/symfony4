@@ -5,12 +5,12 @@ admin_dashboard:
   controller: App\Controller\Dashboards\AdminDashboardController::index
 
 admin_dashboard_user_removal:
-  path: /admin/dashboard/remove/{user_uuid}
-  controller: App\Controller\Dashboards\AdminDashboardController::usersDashlet_removeUser
+  path: /admin/dashboard/{action}/
+  controller: App\Controller\Dashboards\AdminDashboardController::index
 
 admin_dashboard_user_role:
-  path: /admin/dashboard/role/{user_id}
-  controller: App\Controller\Dashboards\AdminDashboardController::usersDashlet_changeRole
+  path: /admin/dashboard/{action}/
+  controller: App\Controller\Dashboards\AdminDashboardController::index
 
 #User
 user_dashboard:

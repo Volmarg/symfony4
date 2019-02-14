@@ -4,62 +4,55 @@ namespace App\Controller\Dashboards;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\User;
-use App\Entity\UserSettings;
-
-//TODO: add controller for user dashlet
+use App\Controller\Dashboards\Components\Admin\UsersDashletController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminDashboardController extends AbstractController {
+
+    private $new_role = '';
+    private $user_id = '';
+
+    public function __construct() {
+        $this->new_role = filter_input(INPUT_GET, 'role', FILTER_DEFAULT) ?? null;
+        $this->user_id = filter_input(INPUT_GET, 'user_id', FILTER_DEFAULT) ?? null;
+    }
+
     /**
      * @Route("/admin/dashboard", name="admin_dashboard")
      */
-    public function index() {
+    public function index($action = null, UsersDashletController $users_dashlet_ctrl) {
 
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $all_users = $users_dashlet_ctrl->getUsers();
 
-        $all_users = $this->usersDashlet_getUsers();
+        if (!is_null($action)) {
+            $action_result = $this->pickUsersDashletAction($action, $users_dashlet_ctrl);
+            $message = json_encode(['message' => $action_result]);
+            return new Response($message, 200, [
+                'Content-Type' => 'application/json'
+            ]);
+        }
 
         return $this->render('dashboards/admin_dashboard/index.html.twig', [
             'all_users' => $all_users,
         ]);
     }
 
-    public function usersDashlet_getUsers() {
-        $em = $this->getDoctrine()->getManager();
-        return $em->getRepository('App\Entity\User')->findAll();
-    }
+    protected function pickUsersDashletAction($action, $users_dashlet_ctrl) {
+        $action_result = 'Your request could not been handled';
 
-    public function usersDashlet_removeUser($user_uuid) {
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($user_uuid);
+        if (is_null($this->user_id)) return $action_result;
 
-        //foreign key first
-        $user_settings = $em->getRepository(UserSettings::class)->findOneBy(['user_id_id' => $user->getId()]);
-        if (!is_null($user_settings)) {
-            $em->remove($user_settings);
-            $em->flush();
+        switch ($action) {
+            case 'changeRole':
+                if (!is_null($this->new_role)) $action_result = $users_dashlet_ctrl->changeRole($this->new_role, $this->user_id);
+                break;
+            case
+            'removeUser':
+                $action_result = $users_dashlet_ctrl->removeUser($this->user_id);
+                break;
         }
-
-        if (!is_null($user)) {
-            $em->remove($user);
-            $em->flush();
-        }
-
-        //BUG - this reinitiliazes view nicely but url is wrong
-        return $this->index();
-    }
-
-    public function usersDashlet_changeRole($user_id) {
-        $new_role = filter_input(INPUT_GET, 'role', FILTER_DEFAULT);
-        //TODO: add get to private
-
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($user_id);
-        $user->setRoles([$new_role]);
-        $em->persist($user);
-        $em->flush();
-
-        //BUG - this reinitiliazes view nicely but url is wrong
-        return $this->index();
+        return $action_result;
     }
 }

@@ -21,11 +21,13 @@
                         </select>
                     </td>
                     <td class="remove">
-                        <a href="{{ url('admin_dashboard_user_removal',{'user_uuid':user.id}) }}" class="select-user-remove">
+                        <a href="{{ url('admin_dashboard_user_removal',{'action':'removeUser'}) }}?user_id={{ user.id }}"
+                           class="select-user-remove">
                             <i class="icon-trash"></i></a>
                     </td>
                     <td class="accept">
-                        <a href="{{ url('admin_dashboard_user_role',{'user_id':user.id}) }}?role={{ user.roles[0] }}" class="select-user-role">
+                        <a href="{{ url('admin_dashboard_user_role',{'action':'changeRole'}) }}?role={{ user.roles[0] }}&user_id={{ user.id }}"
+                           class="select-user-role">
                             <i class="icon-check"></i>
                         </a>
                     </td>
@@ -37,5 +39,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ asset('js/components/admin/dashlets/user.js') }}"></script>
+    <script src="{{ asset('js/components/admin/dashlets/user.js') }}"></script>
 {% endblock %}
