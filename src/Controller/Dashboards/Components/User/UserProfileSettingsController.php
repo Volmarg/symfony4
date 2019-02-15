@@ -61,7 +61,7 @@ class UserProfileSettingsController extends AbstractController {
                 ]
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Change settings', 'attr' => [
+                'label' => 'Change avatar', 'attr' => [
                     'class' => 'btn btn-lg btn-primary btn-block'
                 ]
             ])

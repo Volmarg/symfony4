@@ -1,4 +1,7 @@
-/* Avatar change - form */
+form + form {
+    margin-top: 30px;
+}
+
 div[class^="form-"] > div {
     display: flex;
     justify-content: space-around;
@@ -20,4 +23,8 @@ div[class^="form-"] > div + div {
 
 .configs-wrapper form input, .configs-wrapper form label, .post-form-wrapper form input, .post-form-wrapper form textarea, .post-form-wrapper form label {
     min-width: 150px;
+}
+
+form button{
+    margin-top:10px;
 }

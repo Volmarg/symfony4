@@ -1,3 +1,15 @@
-* {
-    font-family: "Lato", Arial, Helvetica, sans-serif;
+*:not(i) {
+    font-family: 'Handlee', cursive !important;
+}
+
+/* table */
+tr td {
+    padding: 5px;
+}
+
+/* buttons */
+
+.btn-primary {
+    background-color: #262626;
+    border-color: #262626;
 }

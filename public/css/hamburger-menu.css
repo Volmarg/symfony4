@@ -40,6 +40,8 @@ h1 {
     display: block;
     cursor: pointer;
     transition: opacity 0.2s linear;
+
+    z-index: 1;
 }
 .open:hover {
     opacity: 0.8;

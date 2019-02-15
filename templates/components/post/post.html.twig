@@ -1,18 +1,20 @@
 <section class="post-wrapper">
-    <section class="info-bar">
-        <ul>
-            <li>
-                <div class="circle small-circle">
-                    <img height="80" width="80" src="{{ post.avatar }}">
-                </div>
-            </li>
-            <li><b>Author: </b> {{ post.author }}</li>
-            <li><b>Posted: </b>{{ post.create_date }}</li>
-        </ul>
-    </section>
+    <section class="post">
+        <section class="info-bar">
+            <ul>
+                <li>
+                    <div class="circle small-circle">
+                        <img height="80" width="80" src="{{ post.avatar }}">
+                    </div>
+                </li>
+                <li><b>Author: </b> {{ post.author }}</li>
+                <li><b>Posted: </b>{{ post.create_date }}</li>
+            </ul>
+        </section>
 
-    <section class="text-bar">
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text }}</p>
+        <section class="text-bar">
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.text }}</p>
+        </section>
     </section>
 </section>

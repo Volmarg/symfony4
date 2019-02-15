@@ -21,6 +21,7 @@ class HomePageController extends AbstractController {
     }
 
     protected function getPosts() {
+    //refractor into merging objects
 
         $posts = $this->getDoctrine()->getRepository(Posts::class)->findAll();
         $posts_clones = [];
