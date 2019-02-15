@@ -3,6 +3,8 @@
 This small project is just for purpose of general symfony basics tests.
 </p>
 
+<img src="https://github.com/Volmarg/symfony4/blob/master/screen.png?raw=true"/>
+
 <h2> Contains </h2>
 
 <ul>
