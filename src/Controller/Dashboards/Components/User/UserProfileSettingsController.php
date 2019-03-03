@@ -17,7 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\UserSettings;
 use App\Entity\User;
-use App\Service\UserConfig;
 
 class UserProfileSettingsController extends AbstractController {
     /**
@@ -118,15 +117,10 @@ class UserProfileSettingsController extends AbstractController {
     }
 
     protected function updateUserAvatar($avatar) {
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $qb = $em->createQueryBuilder();
 
-        $query_result = $qb->select(array('us'))
-            ->from('App:UserSettings', 'us')
-            ->where('us.user_id_id = ' . $user->getId())
-            ->getQuery()
-            ->getResult();
+        $em=$this->getDoctrine()->getManager();
+        $qb = $this->getDoctrine()->getRepository(UserSettings::class);
+        $query_result = $qb->getUserSettingsByUseId($user = $this->getUser()->getId());
 
         $user_config = $query_result[0];
         $user_config->setAvatar($avatar);

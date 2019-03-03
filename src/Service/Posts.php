@@ -20,8 +20,8 @@ class Posts {
         $posts = $this->em->getRepository(EntityPosts::class)->findAll();
         $posts_clones = [];
         foreach ($posts as $id => $post) {
-            $user_id = $this->getUserId($post->getAuthor());
-            $avatar = $this->getUserAvatar($user_id);
+            $user_id = $this->em->getRepository(User::class)->getUserIdByLogin($post->getAuthor());
+            $avatar = $this->em->getRepository(UserSettings::class)->getUserAvatar($user_id);
 
             $post_clone = clone $post;
             $post_clone->avatar = $avatar;
@@ -30,14 +30,5 @@ class Posts {
         return $posts_clones;
     }
 
-    protected function getUserAvatar($id) {
-        $user_settings = $this->em->getRepository(UserSettings::class)->findBy(['user_id_id' => $id])[0];
-        return $user_settings->getAvatar();
-    }
-
-    protected function getUserId($id) {
-        $user = $this->em->getRepository(User::class)->findBy(['uuid' => $id])[0];
-        return $user->getId();
-    }
 
 }

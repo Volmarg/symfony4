@@ -12,39 +12,28 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method UserSettings[]    findAll()
  * @method UserSettings[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserSettingsRepository extends ServiceEntityRepository
-{
-    public function __construct(RegistryInterface $registry)
-    {
+class UserSettingsRepository extends ServiceEntityRepository {
+    public function __construct(RegistryInterface $registry) {
         parent::__construct($registry, UserSettings::class);
     }
 
-    // /**
-    //  * @return UserSettings[] Returns an array of UserSettings objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    public function getUserAvatar($user_id) {
+        $user_settings = $this->getEntityManager()->getRepository(UserSettings::class)->findBy(['user_id_id' => $user_id])[0];
+        return $user_settings->getAvatar();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?UserSettings
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+    public function getUserSettingsByUseId($user_id) {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $query_result = $qb->select(array('us'))
+            ->from('App:UserSettings', 'us')
+            ->where('us.user_id_id = ' . $user_id)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
+
+        return $query_result;
     }
-    */
+
+
 }
